@@ -55,7 +55,20 @@ val itensComanda: MutableList<String> = mutableListOf<String>()
 var total: Double = 0.0
 
 fun main() {
-    ePadoca()
+    do {
+        var finalizarCompra = "S"
+        ePadoca()
+
+        if (itensComanda.isEmpty()) {
+            println("Deseja mesmo finalizar a compra? (S/N)")
+            finalizarCompra = readln().uppercase()
+        } else {
+            itensComanda.forEach { item -> // funcao
+                println(item)
+            }
+            println("Valor total R$$total")
+        }
+    } while (finalizarCompra != "S")
 }
 
 fun ePadoca() {
@@ -64,7 +77,6 @@ fun ePadoca() {
         println(categorias)
 
         val categoria = readln().toInt()
-//        var cancelarCompra = "N"
 
         when (categoria) {
             PAES -> selecionaProduto(menuSelecionado = menuPaes, produtos = paes)
@@ -72,17 +84,6 @@ fun ePadoca() {
             DOCES -> println(menuDoces)
             else -> Unit
         }
-
-//        if (itensComanda.isEmpty()) {
-//            println("Deseja mesmo cancelar compra? (S/N)") // funcao
-//            cancelarCompra = readln().uppercase()
-//        } else {
-//            itensComanda.forEach { item -> // funcao
-//                println(item)
-//            }
-//            println("Valor total R$$total")
-//        }
-
     } while (categoria != FINALIZAR)
 }
 
